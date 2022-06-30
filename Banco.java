@@ -9,7 +9,6 @@ public class Banco {
 		int resposta, contarandom;
 		double valorDeposito;
 		double valorResgate;
-		//String valorteste;
 		// por que essa indicação da variável?
 		
 		
@@ -34,7 +33,7 @@ public class Banco {
 		Scanner recebeResposta = new Scanner(System.in);
 		resposta = recebeResposta.nextInt();
 		
-		// resposta sim para depositar SOMENTE DEPÓSITO INICIAL
+		// resposta sim para deposito inicial
 		
 			if (resposta == 1 ) {
 				valorDeposito = 0;	
@@ -48,17 +47,23 @@ public class Banco {
 				ContaCorrente.depositar(); 
 				System.err.println("O Saldo atual da sua conta corrente é R$ " + ContaCorrente.getSaldo());
 				
+				int menu = 1;
+				do {
+				
 				//inicio das opções do menu para resgate e dados da conta
 				System.out.println("Agora que você possui uma conta criada, escolha as opções disponíveis: ");
 				System.err.println("+-------------------------------------+");
-			 	System.err.println("1 - RESGATAR POUPANÇA");
+				System.err.println("1 - RESGATAR POUPANÇA");
 			 	System.err.println("2 - SACAR DA CONTA CORRENTE");
 			 	System.err.println("3 - INFORMAÇÕES DAS CONTAS");
+			 	System.err.println("0 - FINALIZAR SESSÃO");
 				System.err.println("+-------------------------------------+");
 								
 				Scanner recebeResposta1 = new Scanner(System.in);
 				resposta = recebeResposta1.nextInt();
-				
+					
+				} while (menu == 0); 
+									
 				if (resposta == 1 ) {
 					
 					double recebeValorPoup;
@@ -67,8 +72,7 @@ public class Banco {
 					System.err.println("Saldo disponível para resgate : R$ " + ContaPoupanca.getSaldo());
 					Scanner recebeValor1 = new Scanner(System.in);
 					recebeValorPoup = recebeValor1.nextDouble();
-						
-						
+												
 						if (recebeValorPoup > ContaPoupanca.getSaldo()) {					
 						System.err.println("Este valor é maior que o saldo da conta poupança. Resgate não efetuado!");
 						System.err.println("O saldo da conta poupança continua R$ " + ContaPoupanca.getSaldo());
@@ -80,6 +84,7 @@ public class Banco {
 						ContaCorrente.valor = recebeValorPoup;
 						ContaCorrente.aplicar();
 						System.err.println("O Saldo atual da sua conta corrente agora é R$ " + ContaCorrente.getSaldo());
+						
 						
 						recebeValor1.close();
 						}
@@ -112,16 +117,23 @@ public class Banco {
 							ContaPoupanca.dadosDaContaPoupanca();
 							
 						}
+						
+						if (resposta == 0 ) {
+							System.err.println("Sessão Finalizada! Obrigado por utlizar nossos serviços. Tenha um ótimo dia!");
+
+							
+						}
 				recebeValor.close();
 				recebeResposta.close();
-				recebeResposta1.close();
-			
+				//recebeResposta1.close();
+				
 			} else {
 				
 				ContaCorrente.numConta = 0;
 				ContaCorrente.titularConta = "";
 				System.err.println("Que pena, só podemos abrir a conta se houver um depósito inicial de qualquer valor. \nO Fuctura Bank agradece!");
-								
+				System.err.println("Sessão Finalizada! Obrigado por utilizar nossos serviços!");
+							
 			}
 			
 		}
