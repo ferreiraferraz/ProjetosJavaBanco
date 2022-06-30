@@ -92,16 +92,18 @@ public class Banco {
 						Scanner recebeValor1 = new Scanner(System.in);
 						recebeValorPoup = recebeValor1.nextDouble();
 						
+						if (recebeValorPoup > ContaCorrente.getSaldo()) {					
+							System.err.println("Este valor é maior que o saldo da conta. Saque não efetuado!");
+							System.err.println("Seu saldo ainda continua R$ " + ContaCorrente.getSaldo());
+							}
+						
 						if (recebeValorPoup <= ContaCorrente.getSaldo()) {
 							ContaCorrente.valor = recebeValorPoup;
 							ContaCorrente.sacar();
 							System.err.println("O Saldo atual da sua conta corrente agora é R$ " + ContaCorrente.getSaldo());
 							recebeValor1.close();
 						}
-							if (recebeValorPoup > ContaCorrente.getSaldo()) {					
-							System.err.println("Este valor é maior que o saldo da conta. Saque não efetuado!");
-							System.err.println("Seu saldo ainda continua R$ " + ContaCorrente.getSaldo());
-							}
+							
 						
 					}
 						if (resposta == 3 ) {
